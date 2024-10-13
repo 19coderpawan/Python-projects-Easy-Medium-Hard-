@@ -87,7 +87,7 @@ def play(player):
     if computer == 1:
         computer_img=cv_to_tk(rock_computer)
         canvas.create_image(500, 100, anchor=NW, image=computer_img)
-    if computer == 2:
+    elif computer == 2:
         computer_img=cv_to_tk(paper_computer)
         canvas.create_image(500, 100, anchor=NW, image=computer_img)
     else:
