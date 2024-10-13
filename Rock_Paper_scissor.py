@@ -60,7 +60,7 @@ player_image = cv_to_tk(default_player_img)
 computer_image = cv_to_tk(default_computer_img)
 selection_image = cv_to_tk(selection_img)
 
-# Create initial images on canvas
+# Create images on canvas
 canvas.create_image(0, 100, anchor=NW, image=player_image)
 canvas.create_image(500, 100, anchor=NW, image=computer_image)
 canvas.create_image(0, 400, anchor=NW, image=selection_image)
@@ -73,7 +73,7 @@ def play(player):
     global player_img, computer_img
     li1 = [1, 2, 3]
     computer = random.choice(li1)
-
+    canvas.delete("result")
     if player == 1:
         player_img=cv_to_tk(rock_player)
         canvas.create_image(0, 100, anchor=NW, image=player_img)
@@ -85,7 +85,7 @@ def play(player):
         canvas.create_image(0, 100, anchor=NW, image=player_img)
 
     if computer == 1:
-        computer_img=cv_to_tk(rock_computer)
+        computer_img=cv_to_tk(rock_player)
         canvas.create_image(500, 100, anchor=NW, image=computer_img)
     elif computer == 2:
         computer_img=cv_to_tk(paper_computer)
@@ -104,7 +104,7 @@ def play(player):
     canvas.create_text(390, 600, text="Result-: " + result, fill="Black", font=("Algerian", 25), tag='result')
 
 
-# Clear function to clear the previous result.
+# Clear function
 def clear():
     canvas.delete('result')
     canvas.create_image(0, 100, anchor=NW, image=cv_to_tk(player_image))
