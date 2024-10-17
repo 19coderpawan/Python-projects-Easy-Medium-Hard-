@@ -1,8 +1,17 @@
 # This is a password manager application in which you can save your personal password in encrypted format.
+# for Encryption we are going to use the crptography module.
 
-master_code=input("Please Enter your Master Code. Remember only if your master code is correct then only your "
-                  "passwords will be decrypted. :- ")
+from cryptography.fernet import Fernet
 
+key=Fernet.generate_key() #to generate new encryption key.
+fer=Fernet(key) #create the instace of the class Fernet using the unique key.
+
+# to encrypt the message use encrypt function and pass the data in bytes format.
+# token=fer.encrypt(b'hii my name is pawan')
+
+
+# to decrypt the encrypted message use decrypt function.
+# print(fer.decrypt(token))
 def display():
     with open("password.txt","r") as f:
         for lines in f.readlines():
@@ -13,19 +22,22 @@ def display():
 #             punctuation marks, or any other specified characters that follow the last meaningful
 #             character in the string.
             user,password=data.split("|")
+
+
 #             so it split the string wherever it finds the | operator in the string.
-            print(f"User-:{user}|password-:{password}")
+            # here again we have to firstly convert the encrypted string into byte string then convert it
+            #   decrypt it and convert it back to normal string using decode()
+            print(f"User-:{user}|password-:{fer.decrypt(password.encode()).decode()}")
 
 def add():
     username=input("enter your User name-: ").lower()
     password=input("enter your password-: ").lower()
 
-    # file=open("password.txt","a")
-    # file.write(f"{username}|{password}")
-    # file.close()
-
     with open("password.txt","a") as f:
-        f.write(username+"|"+password+"\n")
+        ''' encode() and decode() is used to convert regular string to bytes sting then from
+             bytes string to regular string.'''
+        encrypted_password = fer.encrypt(password.encode()).decode()
+        f.write(f"{username}|{encrypted_password}\n")
 
 
 
