@@ -33,6 +33,7 @@ if __name__ == "__main__":
     root.withdraw()#so that the window does not appear .
 
     url=input("enter Youtube video url-:")
+    root.deiconify()  # to make the window appear again.
     save_path= open_file_dialog()
 
     if not save_path:
