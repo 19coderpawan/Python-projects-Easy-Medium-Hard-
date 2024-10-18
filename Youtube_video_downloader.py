@@ -1,9 +1,7 @@
+# This is a youtube video downloader program using which we can easily download any youtube video by just
+# passing it url and also you can save it your local directory.
 
-
-# This is a YouTube video downloader program using which we can easily download any YouTube video by just
-# passing it URL and also you can save it in your local directory.
-
-# the first step you have to do is install libraries like yt_dlp , Tkinter .
+# first step you have to do is install libraries like yt_dlp , Tkinter .
 # to install the yt_dlp use command -: python -m pip install -U yt-dlp
 
 import yt_dlp
@@ -30,5 +28,14 @@ def open_file_dialog():
         print(f"Selected folder={folder}")
     return folder
 
-root=tk.Tk()  #created window object.
-root.withdraw()#so that the window does not appear .
+if __name__ == "__main__":
+    root=tk.Tk()  #created window object.
+    root.withdraw()#so that the window does not appear .
+
+    url=input("enter Youtube video url-:")
+    save_path= open_file_dialog()
+
+    if not save_path:
+        print("invalid directory loacation?")
+    else:
+        Youtube_download(url,save_path)
