@@ -49,6 +49,7 @@ def find_start(maze, start):
 
 # function to find the path.
 def find_path(maze,stdscr):
+    blue = curses.color_pair(1)
     # initlize the start and the end of the maze.
     End = "X"
     Start = "O"
@@ -79,7 +80,7 @@ def find_path(maze,stdscr):
             new_path=path+[neigh]
             q.put((neigh,new_path))
             visited.add(neigh)
-
+      stdscr.addstr("NO path found", blue)  # what if there is no path in the end .
 
 # function to track and process the neighbour nodes.
 '''In this fun we are going to check if the neighbour node is obstacles or not or it is already visited
