@@ -64,6 +64,7 @@ def find_path(maze,stdscr):
         stdscr.clear()  # to clear the screen first.
         # stdscr.addstr(0,0,"pawank ushwaha",blue_yellow)#will add the string at the corridate(row,column) here it is (top left corner)
         print_maze(maze, stdscr,path)
+        time.sleep(0.4) #to slow down the searching process so that you can watch how it it searching for path.
         stdscr.refresh()  # Refresh to show changes
         if maze[row][col] == "X":
             return path
