@@ -42,7 +42,8 @@ def print_maze(maze, stdscr, path=[]):
 def find_start(maze, start):
     for i, row in enumerate(maze):
         for j, value in enumerate(row):
-            return i, j
+            if value == start:
+                return i, j
     return None
 
 
@@ -52,7 +53,6 @@ def find_path(maze,stdscr):
     End = "X"
     Start = "O"
     start_pos = find_start(maze, Start)  # find the start position in the maze.the start_pos hold the tuple of postion.
-
     q = queue.Queue()  # initlize queue data structure.
     # queue holds the tuple of start position and the list which hold the path to reach the end_pos
     q.put((start_pos, [start_pos]))
@@ -76,7 +76,7 @@ def find_path(maze,stdscr):
             if maze[r][c]=="#":
                 continue
             new_path=path+[neigh]
-            q.put(neigh,new_path)
+            q.put((neigh,new_path))
             visited.add(neigh)
 
 
@@ -102,7 +102,7 @@ def find_neighbour(maze, row, col):
 # images or graphics manges in this screen only.
 def main(stdscr):
     '''We can also add colors using curses for that firslty initilize color .'''
-    curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_YELLOW)  # (id,foreground color,background color)
+    curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)  # (id,foreground color,background color)
     # blue_yellow=curses.color_pair(1)# to apply the color use color.pair(id)
     curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
     find_path(maze,stdscr)
